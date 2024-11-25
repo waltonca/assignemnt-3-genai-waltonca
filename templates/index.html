@@ -3,26 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chinese to English Translation</title>
+    <link href="/static/styles.css" rel="stylesheet">
+    <title>Chinese to English Translator</title>
 </head>
 <body>
-    <h1>Chinese to English Translation</h1>
-    <form method="POST">
-        <label for="text_input">Enter Chinese Text:</label><br>
-        <textarea id="text_input" name="text_input" rows="4" cols="50" required></textarea><br><br>
-        <button type="submit">Translate</button>
-    </form>
-
-    {% if original %}
-    <h2>Original Text:</h2>
-    <p>{{ original }}</p>
-
-    <h2>Translated Text:</h2>
-    <p>{{ translated }}</p>
-    {% endif %}
-
-    {% if error %}
-    <p style="color:red">{{ error }}</p>
-    {% endif %}
+    <div class="container">
+        <header>
+            <h1>Chinese to English Translator</h1>
+        </header>
+        <div class="translator">
+            <form method="POST">
+                <div class="textarea-container">
+                    <label for="text_input">Enter Chinese Text:</label>
+                    <textarea id="text_input" name="text_input" placeholder="输入中文文本..." rows="8" required>{{ original if original else '' }}</textarea>
+                </div>
+                <div class="button-container">
+                    <button type="submit" class="btn">Translate</button>
+                </div>
+            </form>
+            {% if translated %}
+            <div class="output-container">
+                <label for="translated_text">Translated English Text:</label>
+                <textarea id="translated_text" readonly rows="8">{{ translated }}</textarea>
+            </div>
+            {% endif %}
+        </div>
+    </div>
 </body>
 </html>
